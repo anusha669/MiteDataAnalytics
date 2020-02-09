@@ -164,10 +164,11 @@
         </div>
     </div>
     <br><br><br>
-    <div class="row">
+    <div class="row" *ngIf="displayFaculty">
         <div class="col-md-2">
+            <h3 style="font-weight: normal;">FACULTIES LIST</h3>
             <div *ngFor="let ele of faculties" style="margin-top: 10px">
-                <button type="button" class="btn btn-outline-primary" style="width:300px;">{{ele}}</button>
+                <button type="button" class="btn btn-danger-outline" style="width:300px;">{{ele['name']}}</button>
             </div>
         </div>
     </div>
@@ -206,6 +207,15 @@
         <div class="col-md-1">
             <button class="back-button" (click)="back_()" *ngIf="chart_visibility" style="float: right; margin: 10px;">
                 <span class="fa fa-chevron-left"></span> Back</button>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row" *ngIf="displayFaculty">
+        <div class="col-md-2">
+            <h3 style="font-weight: normal;">FACULTIES LIST</h3>
+            <div *ngFor="let ele of faculties" style="margin-top: 10px">
+                <button type="button" class="btn btn-danger-outline" style="width:300px;">{{ele['name']}}</button>
+            </div>
         </div>
     </div>
 </div>

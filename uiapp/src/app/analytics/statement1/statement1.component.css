@@ -15,8 +15,8 @@
 
   .example-card{
     width:300px;
-    border-top:maroon 5px solid;
-    border-left:maroon 5px solid;
+    border-top:#76323f 5px solid;
+    border-left:#76323f 5px solid;
   }
  
   .center{
@@ -24,4 +24,10 @@
   margin-left: auto;
   margin-right: auto;
   width: 10%;
+  }
+
+  .btn-danger-outline{
+    color:#76323f;
+    border:2px solid #76323f;
+    background:white;
   }

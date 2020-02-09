@@ -34,6 +34,7 @@ export class Statement1Component implements OnInit {
   roles = [];
   departments=[];
   faculties;
+  displayFaculty=false;
   constructor(private analyticsService: AnalyticsService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -44,6 +45,16 @@ export class Statement1Component implements OnInit {
     this.get_term_numbers()
     this.get_departments()
   }
+  GetSortOrder(prop) {  
+    return function(a, b) {  
+        if (a[prop] > b[prop]) {  
+            return 1;  
+        } else if (a[prop] < b[prop]) {  
+            return -1;  
+        }  
+        return 0;  
+    }  
+}
   getAptRole(){
     for(let r of this.roles)
     {
@@ -95,14 +106,21 @@ export class Statement1Component implements OnInit {
   }
 
   searchbuttonHOD(){
+    this.displayFaculty=true;
     let dept=this.user_info['employeeGivenId'][0]+this.user_info['employeeGivenId'][1]+this.user_info['employeeGivenId'][2]
     this.analyticsService.get_faculties(this.selectedyear, this.terms, dept).subscribe(res => {
       this.faculties = res['faculties']
+      this.faculties.sort(this.GetSortOrder("name")) 
     })
   }
 
   searchbuttonPrincipal(){
-    alert("Yet to be implemented")
+    this.displayFaculty=true;
+    this.analyticsService.get_faculties(this.selectedyear, this.terms, this.selectedDept).subscribe(res => {
+      this.faculties = res['faculties']
+      this.faculties.sort(this.GetSortOrder("name")) 
+    })
+
   }
 
   data;
@@ -207,17 +225,7 @@ export class Statement1Component implements OnInit {
           this.barData.push(this.dummy[i]["ia_attendance_%"][j]);
         }
       }
-      function GetSortOrder(prop) {  
-        return function(a, b) {  
-            if (a[prop] > b[prop]) {  
-                return 1;  
-            } else if (a[prop] < b[prop]) {  
-                return -1;  
-            }  
-            return 0;  
-        }  
-    }
-    this.barData.sort(GetSortOrder("iaNumber"))  
+    this.barData.sort(this.GetSortOrder("iaNumber"))  
     }
     }
 }

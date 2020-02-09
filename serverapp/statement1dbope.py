@@ -43,12 +43,9 @@ def faculties(year,term,dept):
     for ele in collections:
         if ele['roles'][0]['roleName']=='FACULTY':
             if ele["employeeGivenId"].startswith(dept):
-                faculties.append(ele["name"])
-    faculties.sort()
+                faculties.append({"employeeGivenId":ele["employeeGivenId"],"name":ele["name"]})
+    # print(faculties)
     return faculties
-        
-
-faculties(2019,2,'ISE')
 
 def placement(usn):
     collections=mydb["pms_placement_student_details"]
