@@ -214,7 +214,7 @@
         <div class="col-md-2">
             <h3 style="font-weight: normal;">FACULTIES LIST</h3>
             <div *ngFor="let ele of faculties" style="margin-top: 10px">
-                <button type="button" class="btn btn-danger-outline" style="width:300px;">{{ele['name']}}</button>
+                <button type="button" class="btn btn-danger-outline" style="width:300px;" (click)="facultyGraph($event)">{{ele['name']}}</button>
             </div>
         </div>
     </div>

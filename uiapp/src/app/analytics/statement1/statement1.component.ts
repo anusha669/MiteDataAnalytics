@@ -91,6 +91,10 @@ export class Statement1Component implements OnInit {
       this.departments=res['departments']
     })
   }
+
+  facultyGraph(event){
+    console.log(event.toElement.innerText)
+  }
   searchbutton() {
     this.showSpinner = true;
     this.placement();
